@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: canadian-coin-user-api
+    instance-id: ${spring.application.name}-${random.uuid}
+
+  kafka:
+    bootstrap-servers: kafka:9092
+    client-id: ${spring.application.instance-id}
+
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      retries: 3
+    topic.name: canadian-coin-orders
+
+server:
+  port: 8081

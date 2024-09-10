@@ -1,0 +1,14 @@
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    ports:
+      - 27017:27017
+  orders:
+    build:
+      context: ./
+      dockerfile: ./orders/Dockerfile
+    ports:
+      - 8082:8082
+    depends_on:
+      - mongodb

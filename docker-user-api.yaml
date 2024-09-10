@@ -1,0 +1,7 @@
+services:
+  user-api:
+    build:
+      context: ./
+      dockerfile: ./user-api/Dockerfile
+    ports:
+        - 8081:8081

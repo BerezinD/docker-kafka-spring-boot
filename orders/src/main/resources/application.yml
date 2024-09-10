@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: canadian-coin-orders
+    instance-id: ${spring.application.name}-${random.uuid}
+
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/test
+      auto-index-creation: true
+
+  kafka:
+    bootstrap-servers: kafka:9092
+    client-id: ${spring.application.instance-id}
+    topic.name: canadian-coin-orders
+    consumer:
+      group-id: canadian-coin-orders
+      enable-auto-commit: false
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.value.default.type: com.coffee.model.Order
+#        isolation.level: read_committed
+
+server:
+  port: 8082
